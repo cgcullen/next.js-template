@@ -1,14 +1,25 @@
 {
-  "name": "with-tailwindcss",
+  "name": "template",
   "version": "1.0.0",
   "scripts": {
     "dev": "nodemon --watch server server/index.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "populateDb": "node server/database/seeder/populate.js"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
+    "@apollo/react-ssr": "^3.1.5",
+    "apollo-boost": "^0.4.9",
+    "apollo-server-express": "^2.14.1",
     "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.0.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "knex": "^0.21.1",
+    "mysql": "^2.18.1",
     "next": "^9.2.0",
+    "next-with-apollo": "^5.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-transition-group": "^4.4.1"

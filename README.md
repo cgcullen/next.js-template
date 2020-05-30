@@ -6,3 +6,9 @@
 - Transition component
 - nodemon
 - custom server
+- environment variables
+- graphql
+- apollo
+- withApollo
+- knex & mysql
+- seed database with fixtures
