@@ -1,5 +1,7 @@
 const { keysToCamel } = require("../../utils/keysToCamel")
-debugger
+const session = require("express-session")
+var KnexSessionStore = require("connect-session-knex")(session)
+
 const options = {
   client: "mysql",
   connection: {
@@ -7,6 +9,7 @@ const options = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT || 3306,
   },
   postProcessResponse: (result, queryContext) => {
     return keysToCamel(result)
@@ -15,4 +18,11 @@ const options = {
 
 console.log(`using database: ${process.env.DB_DATABASE}`)
 
-exports.knex = require("knex")(options)
+const knex = require("knex")(options)
+
+const initSessionStore = () => {
+  const store = new KnexSessionStore({ knex })
+  return store
+}
+
+module.exports = { knex, initSessionStore }

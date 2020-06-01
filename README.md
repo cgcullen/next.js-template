@@ -12,3 +12,4 @@
 - withApollo
 - knex & mysql
 - seed database with fixtures
+- graphql models

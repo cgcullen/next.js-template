@@ -11,13 +11,13 @@ const isArray = function (a) {
   return Array.isArray(a)
 }
 
-exports.toCamel = (s) => {
+const toCamel = (s) => {
   return s.replace(/([-_][a-z])/gi, ($1) => {
     return $1.toUpperCase().replace("-", "").replace("_", "")
   })
 }
 
-exports.keysToCamel = function (o) {
+const keysToCamel = function (o) {
   if (isObject(o)) {
     const n = {}
 
@@ -33,3 +33,5 @@ exports.keysToCamel = function (o) {
   }
   return o
 }
+
+module.exports = { keysToCamel, toCamel }
