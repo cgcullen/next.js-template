@@ -41,6 +41,7 @@ class User {
   }
 
   async register(registerData) {
+    debugger
     const {
       firstname,
       lastname,
@@ -51,7 +52,8 @@ class User {
     if (!firstname || !lastname || !email || !password || !passwordConfirmation)
       throw new Error("All fields are required")
     const userExists = await knex("users").select("id").where("email", email)
-    if (userExists) throw new Error("This email address already has an account")
+    if (userExists.length > 0)
+      throw new Error("This email address already has an account")
     if (password !== passwordConfirmation) {
       throw new Error("Password must be the same as confirmation password!")
     }

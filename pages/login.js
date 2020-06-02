@@ -1,8 +1,8 @@
-import Nav from "@/components/Nav"
 import LoginForm from "@/components/forms/LoginForm"
 import withApollo from "@/hoc/withApollo"
 import { useLogin } from "@/apollo/actions"
 import Redirect from "@/components/shared/Redirect"
+import Link from "next/link"
 
 const Login = () => {
   const [logIn, { data, loading, error }] = useLogin()
@@ -16,8 +16,6 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-8">
-      <Nav />
-
       <div className="flex flex-col justify-center py-12 pb-8 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
@@ -28,6 +26,12 @@ const Login = () => {
           <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
             Sign in to your account
           </h2>
+          <p className="mt-3 text-center">
+            Don't have an account yet?{" "}
+            <Link href="/register">
+              <a className="text-blue-500">Register</a>
+            </Link>
+          </p>
         </div>
       </div>
       <LoginForm

@@ -1,7 +1,8 @@
 import { useQuery, useMutation, useLazyQuery } from "@apollo/react-hooks"
-import { HELLO, LOGIN, LOGOUT, GET_USER } from "@/apollo/queries"
+import { HELLO, LOGIN, LOGOUT, GET_USER, REGISTER } from "@/apollo/queries"
 
 export const useHello = (id) => useQuery(HELLO, { variables: { id } })
+export const useRegister = () => useMutation(REGISTER)
 export const useLogin = () =>
   useMutation(LOGIN, {
     update(cache, { data: { logIn: loggedInUser } }) {
