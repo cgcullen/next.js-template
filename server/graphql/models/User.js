@@ -1,13 +1,13 @@
+const BaseModel = require("./BaseModel")
 const bcrypt = require("bcryptjs")
 const { knex } = require("../../database")
+const { transporter } = require("../../email")
+const moment = require("moment")
 
-class User {
-  id
-  firstname
-  lastname
-  email
-  password
-  role
+class User extends BaseModel {
+  constructor() {
+    super("User")
+  }
 
   setUserData(user) {
     this.id = user.id
@@ -41,7 +41,6 @@ class User {
   }
 
   async register(registerData) {
-    debugger
     const {
       firstname,
       lastname,
@@ -79,6 +78,7 @@ class User {
       return this.getUserData()
     }
     const user = await knex.from("users").select().where("email", "=", email)
+    if (!user[0]) throw new Error("A User with that Email does not exist")
     this.setUserData(user[0])
     return user[0]
   }
@@ -101,11 +101,98 @@ class User {
   }
 
   getAuthUser(ctx) {
+    debugger
     if (ctx.isAuthenticated()) {
       return ctx.getUser()
     }
 
     return null
+  }
+
+  makeToken(length) {
+    let result = ""
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    const charactersLength = characters.length
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    }
+    return result
+  }
+
+  async forgotPassword(email) {
+    const user = await this.findByEmail(email)
+
+    if (user) {
+      const token = this.makeToken(24)
+      const expires = moment().add(2, "hours").format()
+
+      await knex("users").where("email", email).update({ token, expires })
+      const mailOptions = {
+        from: "tech@cullenws.com",
+        to: email,
+        subject: "Reset your password",
+        text: `Use this link to reset your password: ${process.env.DOMAIN}/reset-password/${token}`,
+      }
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error)
+        } else {
+          console.log("Email sent: " + info.response)
+        }
+      })
+
+      return user.id
+    } else {
+      throw new Error("Email not found")
+    }
+  }
+
+  async resetPassword(resetPasswordData) {
+    const { newPassword, newPasswordConfirmation, token } = resetPasswordData
+    // check for token
+    const users = await knex("users")
+      .select("id", "password", "expires")
+      .where("token", token)
+    const user = users[0]
+    if (!user) throw new Error("Invalid link")
+
+    const current = moment().format()
+    const expires = moment(user.expires).format()
+    if (current > expires) throw new Error("Link has expired")
+
+    if (newPassword !== newPasswordConfirmation)
+      throw new Error("Passwords do not match")
+
+    // hash and save new password
+    const salt = bcrypt.genSaltSync(10)
+    const hash = bcrypt.hashSync(newPassword, salt)
+    const updatedUser = await knex("users")
+      .where("id", user.id)
+      .update({ password: hash })
+    return updatedUser[0]
+  }
+
+  async getUsers() {
+    const users = await knex("users").select(
+      "id",
+      "firstname",
+      "lastname",
+      "role",
+      "email"
+    )
+    return users
+  }
+
+  async changeRole(id, role) {
+    await knex("users").where("id", id).update({ role: role })
+    return { id, role }
+  }
+
+  async deleteUser(id) {
+    await knex("users").where("id", id).del()
+    return id
   }
 }
 

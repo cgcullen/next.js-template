@@ -13,18 +13,7 @@ const Logout = ({ apollo }) => {
     })
   }, [])
 
-  return (
-    <>
-      <div className="bwm-form mt-5">
-        <div className="row">
-          <div className="col-md-5 mx-auto">
-            <h1 className="page-title">Logout</h1>
-            <p>Logging out...</p>
-          </div>
-        </div>
-      </div>
-    </>
-  )
+  return null
 }
 
 export default withApollo(Logout)

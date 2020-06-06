@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { useState, useEffect, Fragment } from "react"
-import withApollo from "@/hoc/withApollo"
 import { useLazyGetUser } from "@/apollo/actions"
 
 export default function Nav() {
@@ -28,7 +27,7 @@ export default function Nav() {
       <ul className="flex justify-between items-center px-8 py-6">
         <li>
           <Link href="/">
-            <a className="text-blue-500 no-underline">Home</a>
+            <a className="text-primary-500 no-underline">Home</a>
           </Link>
         </li>
         {hasResponse && (
@@ -47,7 +46,7 @@ export default function Nav() {
                 )}
                 <li>
                   <Link href="/logout">
-                    <a className="btn-blue no-underline">Logout</a>
+                    <a className="btn-primary-500 no-underline">Logout</a>
                   </Link>
                 </li>
               </Fragment>
@@ -56,12 +55,12 @@ export default function Nav() {
               <Fragment>
                 <li>
                   <Link href="/login">
-                    <a className="btn-blue no-underline">login</a>
+                    <a className="btn-primary-500 no-underline">login</a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/register">
-                    <a className="btn-blue no-underline">Register</a>
+                    <a className="btn-primary-500 no-underline">Register</a>
                   </Link>
                 </li>
               </Fragment>

@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css"
 import "../styles/index.css"
 
 function MyApp({ Component, pageProps }) {

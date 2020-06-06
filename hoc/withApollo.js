@@ -3,8 +3,16 @@ import ApolloClient, { InMemoryCache } from "apollo-boost"
 import { ApolloProvider } from "@apollo/react-hooks"
 
 export default withApollo(
-  ({ initialState }) => {
+  ({ initialState, headers }) => {
     return new ApolloClient({
+      request: (operation) => {
+        operation.setContext({
+          fetchOptions: {
+            credentials: "include",
+          },
+          headers,
+        })
+      },
       uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
       cache: new InMemoryCache().restore(initialState || {}),
     })

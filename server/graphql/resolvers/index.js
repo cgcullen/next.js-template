@@ -8,6 +8,9 @@ exports.userQueries = {
   user: (root, args, ctx) => {
     return ctx.models.User.getAuthUser(ctx)
   },
+  users: (root, args, { models }) => {
+    return models.User.getUsers()
+  },
 }
 
 exports.userMutations = {
@@ -20,5 +23,17 @@ exports.userMutations = {
   },
   logOut: (root, args, ctx) => {
     return ctx.models.User.logOut(ctx)
+  },
+  forgotPassword: (root, { email }, { models }) => {
+    return models.User.forgotPassword(email)
+  },
+  resetPassword: (root, { input }, { models }) => {
+    return models.User.resetPassword(input)
+  },
+  changeRole: (root, { id, role }, { models }) => {
+    return models.User.changeRole(id, role)
+  },
+  deleteUser: (root, { id }, { models }) => {
+    return models.User.deleteUser(id)
   },
 }

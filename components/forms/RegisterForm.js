@@ -20,7 +20,7 @@ const RegisterForm = ({ onSubmit }) => {
                 type="text"
                 name="firstname"
                 required
-                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-primary-500 focus:border-primary-500 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
               />
             </div>
           </div>
@@ -38,7 +38,7 @@ const RegisterForm = ({ onSubmit }) => {
                 type="text"
                 name="lastname"
                 required
-                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-primary-500 focus:border-primary-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
               />
             </div>
           </div>
@@ -56,7 +56,7 @@ const RegisterForm = ({ onSubmit }) => {
                 type="email"
                 name="email"
                 required
-                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-primary-500 focus:border-primary-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
               />
             </div>
           </div>
@@ -74,7 +74,7 @@ const RegisterForm = ({ onSubmit }) => {
                 type="password"
                 name="password"
                 required
-                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-primary-500 focus:border-primary-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
               />
             </div>
           </div>
@@ -92,7 +92,7 @@ const RegisterForm = ({ onSubmit }) => {
                 type="password"
                 name="passwordConfirmation"
                 required
-                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-primary-500 focus:border-primary-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
               />
             </div>
           </div>
@@ -101,7 +101,7 @@ const RegisterForm = ({ onSubmit }) => {
             <span className="block w-full rounded-md shadow-sm">
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out"
+                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-500 focus:outline-none focus:border-primary-700 focus:shadow-outline-primary-500 active:bg-primary-700 transition duration-150 ease-in-out"
               >
                 Sign up
               </button>

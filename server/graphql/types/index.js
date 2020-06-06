@@ -26,4 +26,10 @@ exports.userTypes = `
     email: String!
     password: String!
   }
+
+  input ResetPasswordInput {
+    newPassword: String!
+    newPasswordConfirmation: String!
+    token: String!
+  }
 `
