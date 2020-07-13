@@ -1,5 +1,4 @@
 import { gql } from "apollo-boost"
-import users from "../../pages/users"
 
 export const HELLO = gql`
   query Hello($id: ID) {
